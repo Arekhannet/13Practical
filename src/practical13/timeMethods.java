@@ -4,6 +4,18 @@ import java.io.*;
 import java.text.*;
 import java.util.*;
 
+/**
+ * CSC211 Practical 13
+ * Comparing Linear Search vs Binary Search Performance
+ * 
+ * This program times both search algorithms using data from ulysses.numbered
+ * Runs 30 repetitions with 30 random keys each time
+ * Outputs average time and standard deviation for both algorithms
+ * 
+ * @AREKHANNE TSHILAMULELE
+ * @25 February 2026
+ */
+
 public class timeMethods {
     public static int N = 32654;
 
