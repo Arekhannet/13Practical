@@ -7,18 +7,17 @@ import java.util.*;
 public class timeMethods {
     public static int N = 32654;
     
-        public static void main(String[] args) {
+               public static void main(String[] args) {
         System.out.println("CSC211 Practical 13: Search Algorithm Comparison");
         System.out.println("==================================================");
         
-        // Test file reading
         Node[] records = readDataFromFile("ulysses.numbered");
         
         if (records != null) {
-            System.out.println("First 5 records:");
-            for (int i = 0; i < Math.min(5, records.length); i++) {
-                System.out.println(records[i].key + " -> " + records[i].data);
-            }
+            System.out.println("Loaded " + records.length + " records");
+            
+            // Test key generation
+            int[] testKeys = generateRandomKeys(10, 1, 32654);
         }
     }
     // Node class for storing key-value pairs
@@ -83,4 +82,39 @@ public class timeMethods {
         System.out.println();
         
         return keys;
+    }
+    // Linear search method
+    static int linearsearch(Node[] arr, int targetKey) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i].key == targetKey) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    // Binary search method
+    static int binarysearch(Node[] arr, int targetKey) {
+        int left = 0;
+        int right = arr.length - 1;
+        
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            
+            if (arr[mid].key == targetKey) {
+                return mid;
+            }
+            
+            if (arr[mid].key < targetKey) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return -1;
+    }
+    // Method to calculate standard deviation
+    static double calculateStdDev(double sumSquares, double mean, int n) {
+        if (n <= 1) return 0;
+        double variance = (sumSquares - n * mean * mean) / (n - 1);
+        return Math.sqrt(Math.max(0, variance));
     }
