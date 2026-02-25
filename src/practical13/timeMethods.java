@@ -7,12 +7,20 @@ import java.util.*;
 public class timeMethods {
     public static int N = 32654;
     
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         System.out.println("CSC211 Practical 13: Search Algorithm Comparison");
         System.out.println("==================================================");
-        System.out.println("Step 1: Basic structure complete");
+        
+        // Test file reading
+        Node[] records = readDataFromFile("ulysses.numbered");
+        
+        if (records != null) {
+            System.out.println("First 5 records:");
+            for (int i = 0; i < Math.min(5, records.length); i++) {
+                System.out.println(records[i].key + " -> " + records[i].data);
+            }
+        }
     }
-    
     // Node class for storing key-value pairs
     static class Node {
         int key;
