@@ -65,3 +65,22 @@ public class timeMethods {
         }
     }
 }
+    // Method to generate random keys
+    static int[] generateRandomKeys(int count, int min, int max) {
+        Random rand = new Random();
+        int[] keys = new int[count];
+        
+        System.out.println("\nGenerating " + count + " random keys...");
+        
+        for (int i = 0; i < count; i++) {
+            keys[i] = rand.nextInt(max - min + 1) + min;
+        }
+        
+        System.out.print("Sample keys: ");
+        for (int i = 0; i < Math.min(5, count); i++) {
+            System.out.printf("%05d ", keys[i]);
+        }
+        System.out.println();
+        
+        return keys;
+    }
