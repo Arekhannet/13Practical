@@ -6,8 +6,9 @@ import java.util.*;
 
 public class timeMethods {
     public static int N = 32654;
-    
-               public static void main(String[] args) {
+
+    // Main method Methodo MUHULWANE
+    public static void main(String[] args) {
         System.out.println("CSC211 Practical 13: Search Algorithm Comparison");
         System.out.println("==================================================");
         
@@ -16,10 +17,28 @@ public class timeMethods {
         if (records != null) {
             System.out.println("Loaded " + records.length + " records");
             
-            // Test key generation
-            int[] testKeys = generateRandomKeys(10, 1, 32654);
+            // Create sorted copy for binary search
+            Node[] sortedRecords = records.clone();
+            Arrays.sort(sortedRecords, (a, b) -> Integer.compare(a.key, b.key));
+            
+            int[] testKeys = generateRandomKeys(5, 1, 32654);
+            
+            // Test linear search
+            System.out.println("\nTesting Linear Search:");
+            for (int key : testKeys) {
+                int result = linearsearch(records, key);
+                System.out.println("Key " + key + " found at index: " + result);
+            }
+            
+            // Test binary search
+            System.out.println("\nTesting Binary Search:");
+            for (int key : testKeys) {
+                int result = binarysearch(sortedRecords, key);
+                System.out.println("Key " + key + " found at index: " + result);
+            }
         }
     }
+    
     // Node class for storing key-value pairs
     static class Node {
         int key;
@@ -30,7 +49,8 @@ public class timeMethods {
             this.data = data;
         }
     }
-        // Method to read data from file
+    
+    // Method to read data from file
     static Node[] readDataFromFile(String filename) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filename));
@@ -63,7 +83,7 @@ public class timeMethods {
             return null;
         }
     }
-}
+    
     // Method to generate random keys
     static int[] generateRandomKeys(int count, int min, int max) {
         Random rand = new Random();
@@ -83,6 +103,7 @@ public class timeMethods {
         
         return keys;
     }
+    
     // Linear search method
     static int linearsearch(Node[] arr, int targetKey) {
         for (int i = 0; i < arr.length; i++) {
@@ -92,6 +113,7 @@ public class timeMethods {
         }
         return -1;
     }
+    
     // Binary search method
     static int binarysearch(Node[] arr, int targetKey) {
         int left = 0;
@@ -112,9 +134,11 @@ public class timeMethods {
         }
         return -1;
     }
+    
     // Method to calculate standard deviation
     static double calculateStdDev(double sumSquares, double mean, int n) {
         if (n <= 1) return 0;
         double variance = (sumSquares - n * mean * mean) / (n - 1);
         return Math.sqrt(Math.max(0, variance));
     }
+}
